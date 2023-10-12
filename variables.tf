@@ -11,15 +11,6 @@ variable "cluster_name" {
   nullable = false
 }
 
-variable "k8s_vpc_name" {
-  type = string
-  default = "YTL-MY-AWS-VPC- Container-NonProd"
-}
-
-variable "k8s_vpc_cidr_block" {
-    type = string
-    default = "10.75.0.0/16"
-}
 
 
 variable "k8s_aws_private_subnets" {
@@ -31,22 +22,42 @@ variable "k8s_aws_private_subnets" {
 
     default = {
       ap-southeast-1a-1 = {
-        cidr            = "10.75.4.0/22"
+        cidr            = "10.75.0.0/18"
         subnet_tag_name = "EKS-PubWeb-Stg-Pvt-Subnet 1a"
         az              = "ap-southeast-1a"
       },
-      ap-southeast-1a-2 = {
-        cidr            = "10.75.8.0/24"
+      ap-southeast-1b-1 = {
+        cidr            = "10.75.64.0/18"
         subnet_tag_name = "EKS-PubWeb-Stg-Pub-Subnet 1a"
-        az              = "ap-southeast-1a"
-      }
+        az              = "ap-southeast-1b"
+      },
       ap-southeast-1a-3 = {
-        cidr            = "10.75.9.0/24"
+        cidr            = "10.75.128.0/18"
         subnet_tag_name = "EKS-DB-Stg-Subnet 1a"
         az              = "ap-southeast-1a"
       }
-
     }
+    
+    # TODO: 
+    # Document plan but terraform apply considers these subnets invalid
+    # =================================================================
+    # default = {
+    #   ap-southeast-1a-1 = {
+    #     cidr            = "10.75.4.0/22"
+    #     subnet_tag_name = "EKS-PubWeb-Stg-Pvt-Subnet 1a"
+    #     az              = "ap-southeast-1a"
+    #   },
+    #   ap-southeast-1a-2 = {
+    #     cidr            = "10.75.8.0/24"
+    #     subnet_tag_name = "EKS-PubWeb-Stg-Pub-Subnet 1a"
+    #     az              = "ap-southeast-1a"
+    #   },
+    #   ap-southeast-1a-3 = {
+    #     cidr            = "10.75.9.0/24"
+    #     subnet_tag_name = "EKS-DB-Stg-Subnet 1a"
+    #     az              = "ap-southeast-1a"
+    #   }
+    # }
 }
 
 
@@ -61,11 +72,6 @@ variable "k8s_aws_public_subnets" {
     }
 }
 
-
-variable "k8s_buckets" {
-    type = list(string)
-    default = [ "my", "vn", "sg" ]  
-}
 
 #   vpc_id            = aws_vpc.main.id
 #   cidr_block        = "10.0.0.0/19"

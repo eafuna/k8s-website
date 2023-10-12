@@ -32,11 +32,12 @@ resource "aws_eks_cluster" "k8s_website" {
   vpc_config {
     endpoint_private_access = true
     endpoint_public_access  = false
-    subnet_ids = concat(
-      values(aws_subnet.k8s_public_subnet).*.id,
-      values(aws_subnet.k8s_private_subnet).*.id
-    )
-
+    
+    # subnet_ids = concat(
+    #   values(aws_subnet.k8s_public_subnet).*.id,
+    #   values(aws_subnet.k8s_private_subnet).*.id
+    # )
+    subnet_ids = var.k8s_subnet_ids
   }
 
   depends_on = [aws_iam_role_policy_attachment.k8s_website-AmazonEKSClusterPolicy]
