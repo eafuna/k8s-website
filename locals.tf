@@ -1,5 +1,5 @@
 locals {
-  k8s_vpc_id = var.k8s_use_vpc_id
+  k8s_vpc_id = aws_vpc.k8s_new_vpc.id
 
   k8s_required_subnet_tags = {
   #   "Name" = "Something" Display in aws console
@@ -10,4 +10,7 @@ locals {
   k8s_common_tags = {
     "owner" = var.cluster_name
   }
+
+  k8s_has_public_subnet = length(var.k8s_aws_public_subnets) > 0 ? true : false
+  
 }

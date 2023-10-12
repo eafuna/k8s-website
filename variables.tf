@@ -1,57 +1,65 @@
 
+# variable "k8s_use_vpc_id" {
+#     type = string    
+#     default = "vpc-43b17925"
+# }
+
+
+
 variable "cluster_name" {
-  default = "k8s_website"
+  default = "k8website"
   type = string
   description = "AWS EKS CLuster Name"
   nullable = false
 }
 
+variable "k8s_vpc_name" {
+  type = string
+  default = "YTL-MY-AWS-VPC- Container-NonProd"
+}
 
 variable "k8s_vpc_cidr_block" {
     type = string
-    default = ""
-}
-
-variable "k8s_use_vpc_id" {
-    type = string    
-    default = "vpc-43b17925"
-}
-
-
-variable "k8s_aws_public_subnets" {
-    type = map(object({
-        cidr = string
-        subnet_tag_name = string
-    }))
-
-    default = {
-      us-east-1a = {
-        cidr = "10.0.32.0/19"
-        subnet_tag_name = "public-us-east-1a"
-      },
-      us-east-1b = {
-        cidr = "10.0.96.0/19"
-        subnet_tag_name = "public-us-east-1b"
-      }
-    }
+    default = "10.75.0.0/16"
 }
 
 
 variable "k8s_aws_private_subnets" {
     type = map(object({
-        cidr = string
+        cidr            = string
         subnet_tag_name = string
+        az              = string
     }))
 
     default = {
-      us-east-1a = {
-        cidr = "10.0.0.0/19"
-        subnet_tag_name = "private-us-east-1a"
+      ap-southeast-1a-1 = {
+        cidr            = "10.74.4.0/22"
+        subnet_tag_name = "EKS-PubWeb-Stg-Pvt-Subnet 1a"
+        az              = "ap-southeast-1a"
       },
-      us-east-1b = {
-        cidr = "10.0.32.0/19"
-        subnet_tag_name = "private-us-east-1b"
+      ap-southeast-1a-2 = {
+        cidr            = "10.74.8.0/24"
+        subnet_tag_name = "EKS-PubWeb-Stg-Pub-Subnet 1a"
+        az              = "ap-southeast-1a"
       }
+      ap-southeast-1a-3 = {
+        cidr            = "10.74.9.0/24"
+        subnet_tag_name = "EKS-DB-Stg-Subnet 1a"
+        az              = "ap-southeast-1a"
+      }
+
+    }
+}
+
+
+variable "k8s_aws_public_subnets" {
+    type = map(object({
+        cidr            = string
+        subnet_tag_name = string
+        az              = string
+    }))
+
+    default = {
     }
 }
 

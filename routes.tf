@@ -1,4 +1,5 @@
 resource "aws_route_table" "private" {
+   
   for_each = aws_nat_gateway.nat
 
   vpc_id = local.k8s_vpc_id
@@ -54,8 +55,9 @@ resource "aws_route_table" "public" {
 
 }
 
+
 resource "aws_route_table_association" "k8s_private_routes" {
-  for_each = aws_subnet.k8s_private_subnet
+  for_each = local.k8s_has_public_subnet ? aws_subnet.k8s_private_subnet : {}
 
   subnet_id      = each.value.id
   route_table_id = aws_route_table.private[each.key].id
@@ -68,3 +70,4 @@ resource "aws_route_table_association" "k8s_public_routes" {
   subnet_id      = each.value.id
   route_table_id = aws_route_table.public.id
 }
+
