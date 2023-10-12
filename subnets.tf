@@ -9,7 +9,10 @@ resource "aws_subnet" "k8s_public_subnet" {
   map_public_ip_on_launch = true
 
   availability_zone = each.key
-  tags = merge(local.k8s_required_subnet_tags, { Name = each.value["subnet_tag_name"] })
+  tags = merge(
+    local.k8s_common_tags,
+    local.k8s_required_subnet_tags, 
+    { Name = each.value["subnet_tag_name"] })
   
 }
 
@@ -23,7 +26,10 @@ resource "aws_subnet" "k8s_private_subnet" {
   map_public_ip_on_launch = true
 
   availability_zone = each.key
-  tags = merge(local.k8s_required_subnet_tags, { Name = each.value["subnet_tag_name"] })
+  tags = merge(
+    local.k8s_common_tags,
+    local.k8s_required_subnet_tags, 
+    { Name = each.value["subnet_tag_name"] })
   
 }
 

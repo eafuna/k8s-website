@@ -1,10 +1,12 @@
 resource "aws_route_table" "private" {
+  for_each = aws_nat_gateway.nat
+
   vpc_id = local.k8s_vpc_id
 
   route = [
     {
       cidr_block                 = "0.0.0.0/0"
-      nat_gateway_id             = aws_nat_gateway.nat.id
+      nat_gateway_id             = aws_nat_gateway.nat[each.key].id
       carrier_gateway_id         = ""
       destination_prefix_list_id = ""
       egress_only_gateway_id     = ""
@@ -19,9 +21,10 @@ resource "aws_route_table" "private" {
     },
   ]
 
-  tags = {
-    Name = "private"
-  }
+  tags = merge(
+    local.k8s_common_tags,
+    { Name = "${var.cluster_name}-private-route-table"} )
+
 }
 
 resource "aws_route_table" "public" {
@@ -45,16 +48,17 @@ resource "aws_route_table" "public" {
     },
   ]
 
-  tags = {
-    Name = "public"
-  }
+  tags = merge(
+    local.k8s_common_tags,
+    { Name = "${var.cluster_name}-public-route-table"} )
+
 }
 
 resource "aws_route_table_association" "k8s_private_routes" {
   for_each = aws_subnet.k8s_private_subnet
 
   subnet_id      = each.value.id
-  route_table_id = aws_route_table.private.id
+  route_table_id = aws_route_table.private[each.key].id
 }
 
 

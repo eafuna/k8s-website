@@ -1,5 +1,5 @@
 resource "aws_iam_role" "k8s_website" {
-  name = "eks-cluster-k8s_website"
+  name = "${var.cluster_name}-iam-role"
 
   assume_role_policy = <<POLICY
 {
@@ -23,7 +23,8 @@ resource "aws_iam_role_policy_attachment" "k8s_website-AmazonEKSClusterPolicy" {
 }
 
 resource "aws_eks_cluster" "k8s_website" {
-  name     = var.cluster_name
+  # WARNING! Bare minimum configuration
+  name = "${var.cluster_name}-cluster"
   role_arn = aws_iam_role.k8s_website.arn
 
   vpc_config {
