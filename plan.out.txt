@@ -1,0 +1,278 @@
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  [32m+[0m create[0m
+
+Terraform will perform the following actions:
+
+[1m  # aws_internet_gateway.igw[0m will be created
+[0m  [32m+[0m[0m resource "aws_internet_gateway" "igw" {
+      [32m+[0m[0m arn      = (known after apply)
+      [32m+[0m[0m id       = (known after apply)
+      [32m+[0m[0m owner_id = (known after apply)
+      [32m+[0m[0m tags     = {
+          [32m+[0m[0m "Name"  = "k8website-igw"
+          [32m+[0m[0m "owner" = "k8website"
+        }
+      [32m+[0m[0m tags_all = {
+          [32m+[0m[0m "Name"  = "k8website-igw"
+          [32m+[0m[0m "owner" = "k8website"
+        }
+      [32m+[0m[0m vpc_id   = (known after apply)
+    }
+
+[1m  # aws_route_table.public[0m will be created
+[0m  [32m+[0m[0m resource "aws_route_table" "public" {
+      [32m+[0m[0m arn              = (known after apply)
+      [32m+[0m[0m id               = (known after apply)
+      [32m+[0m[0m owner_id         = (known after apply)
+      [32m+[0m[0m propagating_vgws = (known after apply)
+      [32m+[0m[0m route            = [
+          [32m+[0m[0m {
+              [32m+[0m[0m carrier_gateway_id         = ""
+              [32m+[0m[0m cidr_block                 = "0.0.0.0/0"
+              [32m+[0m[0m destination_prefix_list_id = ""
+              [32m+[0m[0m egress_only_gateway_id     = ""
+              [32m+[0m[0m gateway_id                 = (known after apply)
+              [32m+[0m[0m instance_id                = ""
+              [32m+[0m[0m ipv6_cidr_block            = ""
+              [32m+[0m[0m local_gateway_id           = ""
+              [32m+[0m[0m nat_gateway_id             = ""
+              [32m+[0m[0m network_interface_id       = ""
+              [32m+[0m[0m transit_gateway_id         = ""
+              [32m+[0m[0m vpc_endpoint_id            = ""
+              [32m+[0m[0m vpc_peering_connection_id  = ""
+            },
+        ]
+      [32m+[0m[0m tags             = {
+          [32m+[0m[0m "Name"  = "k8website-public-route-table"
+          [32m+[0m[0m "owner" = "k8website"
+        }
+      [32m+[0m[0m tags_all         = {
+          [32m+[0m[0m "Name"  = "k8website-public-route-table"
+          [32m+[0m[0m "owner" = "k8website"
+        }
+      [32m+[0m[0m vpc_id           = (known after apply)
+    }
+
+[1m  # aws_s3_bucket.k8s_bucket[0][0m will be created
+[0m  [32m+[0m[0m resource "aws_s3_bucket" "k8s_bucket" {
+      [32m+[0m[0m acceleration_status         = (known after apply)
+      [32m+[0m[0m acl                         = "private"
+      [32m+[0m[0m arn                         = (known after apply)
+      [32m+[0m[0m bucket                      = "k8website-bucket-my"
+      [32m+[0m[0m bucket_domain_name          = (known after apply)
+      [32m+[0m[0m bucket_regional_domain_name = (known after apply)
+      [32m+[0m[0m force_destroy               = false
+      [32m+[0m[0m hosted_zone_id              = (known after apply)
+      [32m+[0m[0m id                          = (known after apply)
+      [32m+[0m[0m object_lock_enabled         = (known after apply)
+      [32m+[0m[0m region                      = (known after apply)
+      [32m+[0m[0m request_payer               = (known after apply)
+      [32m+[0m[0m tags                        = {
+          [32m+[0m[0m "Name"  = "k8website-bucket-my"
+          [32m+[0m[0m "owner" = "k8website"
+        }
+      [32m+[0m[0m tags_all                    = {
+          [32m+[0m[0m "Name"  = "k8website-bucket-my"
+          [32m+[0m[0m "owner" = "k8website"
+        }
+      [32m+[0m[0m website_domain              = (known after apply)
+      [32m+[0m[0m website_endpoint            = (known after apply)
+    }
+
+[1m  # aws_s3_bucket.k8s_bucket[1][0m will be created
+[0m  [32m+[0m[0m resource "aws_s3_bucket" "k8s_bucket" {
+      [32m+[0m[0m acceleration_status         = (known after apply)
+      [32m+[0m[0m acl                         = "private"
+      [32m+[0m[0m arn                         = (known after apply)
+      [32m+[0m[0m bucket                      = "k8website-bucket-vn"
+      [32m+[0m[0m bucket_domain_name          = (known after apply)
+      [32m+[0m[0m bucket_regional_domain_name = (known after apply)
+      [32m+[0m[0m force_destroy               = false
+      [32m+[0m[0m hosted_zone_id              = (known after apply)
+      [32m+[0m[0m id                          = (known after apply)
+      [32m+[0m[0m object_lock_enabled         = (known after apply)
+      [32m+[0m[0m region                      = (known after apply)
+      [32m+[0m[0m request_payer               = (known after apply)
+      [32m+[0m[0m tags                        = {
+          [32m+[0m[0m "Name"  = "k8website-bucket-vn"
+          [32m+[0m[0m "owner" = "k8website"
+        }
+      [32m+[0m[0m tags_all                    = {
+          [32m+[0m[0m "Name"  = "k8website-bucket-vn"
+          [32m+[0m[0m "owner" = "k8website"
+        }
+      [32m+[0m[0m website_domain              = (known after apply)
+      [32m+[0m[0m website_endpoint            = (known after apply)
+    }
+
+[1m  # aws_s3_bucket.k8s_bucket[2][0m will be created
+[0m  [32m+[0m[0m resource "aws_s3_bucket" "k8s_bucket" {
+      [32m+[0m[0m acceleration_status         = (known after apply)
+      [32m+[0m[0m acl                         = "private"
+      [32m+[0m[0m arn                         = (known after apply)
+      [32m+[0m[0m bucket                      = "k8website-bucket-sg"
+      [32m+[0m[0m bucket_domain_name          = (known after apply)
+      [32m+[0m[0m bucket_regional_domain_name = (known after apply)
+      [32m+[0m[0m force_destroy               = false
+      [32m+[0m[0m hosted_zone_id              = (known after apply)
+      [32m+[0m[0m id                          = (known after apply)
+      [32m+[0m[0m object_lock_enabled         = (known after apply)
+      [32m+[0m[0m region                      = (known after apply)
+      [32m+[0m[0m request_payer               = (known after apply)
+      [32m+[0m[0m tags                        = {
+          [32m+[0m[0m "Name"  = "k8website-bucket-sg"
+          [32m+[0m[0m "owner" = "k8website"
+        }
+      [32m+[0m[0m tags_all                    = {
+          [32m+[0m[0m "Name"  = "k8website-bucket-sg"
+          [32m+[0m[0m "owner" = "k8website"
+        }
+      [32m+[0m[0m website_domain              = (known after apply)
+      [32m+[0m[0m website_endpoint            = (known after apply)
+    }
+
+[1m  # aws_subnet.k8s_private_subnet["ap-southeast-1a-1"][0m will be created
+[0m  [32m+[0m[0m resource "aws_subnet" "k8s_private_subnet" {
+      [32m+[0m[0m arn                                            = (known after apply)
+      [32m+[0m[0m assign_ipv6_address_on_creation                = false
+      [32m+[0m[0m availability_zone                              = "ap-southeast-1a"
+      [32m+[0m[0m availability_zone_id                           = (known after apply)
+      [32m+[0m[0m cidr_block                                     = "10.75.4.0/22"
+      [32m+[0m[0m enable_dns64                                   = false
+      [32m+[0m[0m enable_resource_name_dns_a_record_on_launch    = false
+      [32m+[0m[0m enable_resource_name_dns_aaaa_record_on_launch = false
+      [32m+[0m[0m id                                             = (known after apply)
+      [32m+[0m[0m ipv6_cidr_block_association_id                 = (known after apply)
+      [32m+[0m[0m ipv6_native                                    = false
+      [32m+[0m[0m map_public_ip_on_launch                        = false
+      [32m+[0m[0m owner_id                                       = (known after apply)
+      [32m+[0m[0m private_dns_hostname_type_on_launch            = (known after apply)
+      [32m+[0m[0m tags                                           = {
+          [32m+[0m[0m "Name"                                      = "EKS-PubWeb-Stg-Pvt-Subnet 1a"
+          [32m+[0m[0m "kubernetes.io/cluster/{$var.cluster_name}" = "owned"
+          [32m+[0m[0m "kubernetes.io/role/internal-elb"           = "1"
+          [32m+[0m[0m "owner"                                     = "k8website"
+        }
+      [32m+[0m[0m tags_all                                       = {
+          [32m+[0m[0m "Name"                                      = "EKS-PubWeb-Stg-Pvt-Subnet 1a"
+          [32m+[0m[0m "kubernetes.io/cluster/{$var.cluster_name}" = "owned"
+          [32m+[0m[0m "kubernetes.io/role/internal-elb"           = "1"
+          [32m+[0m[0m "owner"                                     = "k8website"
+        }
+      [32m+[0m[0m vpc_id                                         = (known after apply)
+    }
+
+[1m  # aws_subnet.k8s_private_subnet["ap-southeast-1a-2"][0m will be created
+[0m  [32m+[0m[0m resource "aws_subnet" "k8s_private_subnet" {
+      [32m+[0m[0m arn                                            = (known after apply)
+      [32m+[0m[0m assign_ipv6_address_on_creation                = false
+      [32m+[0m[0m availability_zone                              = "ap-southeast-1a"
+      [32m+[0m[0m availability_zone_id                           = (known after apply)
+      [32m+[0m[0m cidr_block                                     = "10.75.8.0/24"
+      [32m+[0m[0m enable_dns64                                   = false
+      [32m+[0m[0m enable_resource_name_dns_a_record_on_launch    = false
+      [32m+[0m[0m enable_resource_name_dns_aaaa_record_on_launch = false
+      [32m+[0m[0m id                                             = (known after apply)
+      [32m+[0m[0m ipv6_cidr_block_association_id                 = (known after apply)
+      [32m+[0m[0m ipv6_native                                    = false
+      [32m+[0m[0m map_public_ip_on_launch                        = false
+      [32m+[0m[0m owner_id                                       = (known after apply)
+      [32m+[0m[0m private_dns_hostname_type_on_launch            = (known after apply)
+      [32m+[0m[0m tags                                           = {
+          [32m+[0m[0m "Name"                                      = "EKS-PubWeb-Stg-Pub-Subnet 1a"
+          [32m+[0m[0m "kubernetes.io/cluster/{$var.cluster_name}" = "owned"
+          [32m+[0m[0m "kubernetes.io/role/internal-elb"           = "1"
+          [32m+[0m[0m "owner"                                     = "k8website"
+        }
+      [32m+[0m[0m tags_all                                       = {
+          [32m+[0m[0m "Name"                                      = "EKS-PubWeb-Stg-Pub-Subnet 1a"
+          [32m+[0m[0m "kubernetes.io/cluster/{$var.cluster_name}" = "owned"
+          [32m+[0m[0m "kubernetes.io/role/internal-elb"           = "1"
+          [32m+[0m[0m "owner"                                     = "k8website"
+        }
+      [32m+[0m[0m vpc_id                                         = (known after apply)
+    }
+
+[1m  # aws_subnet.k8s_private_subnet["ap-southeast-1a-3"][0m will be created
+[0m  [32m+[0m[0m resource "aws_subnet" "k8s_private_subnet" {
+      [32m+[0m[0m arn                                            = (known after apply)
+      [32m+[0m[0m assign_ipv6_address_on_creation                = false
+      [32m+[0m[0m availability_zone                              = "ap-southeast-1a"
+      [32m+[0m[0m availability_zone_id                           = (known after apply)
+      [32m+[0m[0m cidr_block                                     = "10.75.9.0/24"
+      [32m+[0m[0m enable_dns64                                   = false
+      [32m+[0m[0m enable_resource_name_dns_a_record_on_launch    = false
+      [32m+[0m[0m enable_resource_name_dns_aaaa_record_on_launch = false
+      [32m+[0m[0m id                                             = (known after apply)
+      [32m+[0m[0m ipv6_cidr_block_association_id                 = (known after apply)
+      [32m+[0m[0m ipv6_native                                    = false
+      [32m+[0m[0m map_public_ip_on_launch                        = false
+      [32m+[0m[0m owner_id                                       = (known after apply)
+      [32m+[0m[0m private_dns_hostname_type_on_launch            = (known after apply)
+      [32m+[0m[0m tags                                           = {
+          [32m+[0m[0m "Name"                                      = "EKS-DB-Stg-Subnet 1a"
+          [32m+[0m[0m "kubernetes.io/cluster/{$var.cluster_name}" = "owned"
+          [32m+[0m[0m "kubernetes.io/role/internal-elb"           = "1"
+          [32m+[0m[0m "owner"                                     = "k8website"
+        }
+      [32m+[0m[0m tags_all                                       = {
+          [32m+[0m[0m "Name"                                      = "EKS-DB-Stg-Subnet 1a"
+          [32m+[0m[0m "kubernetes.io/cluster/{$var.cluster_name}" = "owned"
+          [32m+[0m[0m "kubernetes.io/role/internal-elb"           = "1"
+          [32m+[0m[0m "owner"                                     = "k8website"
+        }
+      [32m+[0m[0m vpc_id                                         = (known after apply)
+    }
+
+[1m  # aws_vpc.k8s_new_vpc[0m will be created
+[0m  [32m+[0m[0m resource "aws_vpc" "k8s_new_vpc" {
+      [32m+[0m[0m arn                                  = (known after apply)
+      [32m+[0m[0m cidr_block                           = "10.75.0.0/16"
+      [32m+[0m[0m default_network_acl_id               = (known after apply)
+      [32m+[0m[0m default_route_table_id               = (known after apply)
+      [32m+[0m[0m default_security_group_id            = (known after apply)
+      [32m+[0m[0m dhcp_options_id                      = (known after apply)
+      [32m+[0m[0m enable_classiclink                   = (known after apply)
+      [32m+[0m[0m enable_classiclink_dns_support       = (known after apply)
+      [32m+[0m[0m enable_dns_hostnames                 = (known after apply)
+      [32m+[0m[0m enable_dns_support                   = true
+      [32m+[0m[0m id                                   = (known after apply)
+      [32m+[0m[0m instance_tenancy                     = "default"
+      [32m+[0m[0m ipv6_association_id                  = (known after apply)
+      [32m+[0m[0m ipv6_cidr_block                      = (known after apply)
+      [32m+[0m[0m ipv6_cidr_block_network_border_group = (known after apply)
+      [32m+[0m[0m main_route_table_id                  = (known after apply)
+      [32m+[0m[0m owner_id                             = (known after apply)
+      [32m+[0m[0m tags                                 = {
+          [32m+[0m[0m "Name" = "YTL-MY-AWS-VPC- Container-NonProd"
+        }
+      [32m+[0m[0m tags_all                             = {
+          [32m+[0m[0m "Name" = "YTL-MY-AWS-VPC- Container-NonProd"
+        }
+    }
+
+[1m  # random_id.unique[0m will be created
+[0m  [32m+[0m[0m resource "random_id" "unique" {
+      [32m+[0m[0m b64_std     = (known after apply)
+      [32m+[0m[0m b64_url     = (known after apply)
+      [32m+[0m[0m byte_length = 8
+      [32m+[0m[0m dec         = (known after apply)
+      [32m+[0m[0m hex         = (known after apply)
+      [32m+[0m[0m id          = (known after apply)
+      [32m+[0m[0m keepers     = {
+          [32m+[0m[0m "first" = (known after apply)
+        }
+    }
+
+[1mPlan:[0m 10 to add, 0 to change, 0 to destroy.
+[0m
+Changes to Outputs:
+  [32m+[0m[0m k8s = []
+  [32m+[0m[0m x   = {}
+[90m
+─────────────────────────────────────────────────────────────────────────────[0m
+
+Note: You didn't use the -out option to save this plan, so Terraform can't
+guarantee to take exactly these actions if you run "terraform apply" now.

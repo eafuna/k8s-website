@@ -12,5 +12,7 @@ locals {
   }
 
   k8s_has_public_subnet = length(var.k8s_aws_public_subnets) > 0 ? true : false
-  
+
+  environment = "stg"
+
 }

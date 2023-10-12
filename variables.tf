@@ -4,8 +4,6 @@
 #     default = "vpc-43b17925"
 # }
 
-
-
 variable "cluster_name" {
   default = "k8website"
   type = string
@@ -33,17 +31,17 @@ variable "k8s_aws_private_subnets" {
 
     default = {
       ap-southeast-1a-1 = {
-        cidr            = "10.74.4.0/22"
+        cidr            = "10.75.4.0/22"
         subnet_tag_name = "EKS-PubWeb-Stg-Pvt-Subnet 1a"
         az              = "ap-southeast-1a"
       },
       ap-southeast-1a-2 = {
-        cidr            = "10.74.8.0/24"
+        cidr            = "10.75.8.0/24"
         subnet_tag_name = "EKS-PubWeb-Stg-Pub-Subnet 1a"
         az              = "ap-southeast-1a"
       }
       ap-southeast-1a-3 = {
-        cidr            = "10.74.9.0/24"
+        cidr            = "10.75.9.0/24"
         subnet_tag_name = "EKS-DB-Stg-Subnet 1a"
         az              = "ap-southeast-1a"
       }
@@ -63,6 +61,11 @@ variable "k8s_aws_public_subnets" {
     }
 }
 
+
+variable "k8s_buckets" {
+    type = list(string)
+    default = [ "my", "vn", "sg" ]  
+}
 
 #   vpc_id            = aws_vpc.main.id
 #   cidr_block        = "10.0.0.0/19"
