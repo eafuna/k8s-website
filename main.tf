@@ -6,13 +6,13 @@ module "eks_network" {
 }
 
 
-# module "eks" {
-#   source = "./eks"
+module "eks" {
+  source = "./eks"
   
-#   k8s_subnet_ids =  concat(
-#       values(module.eks_network.k8s_public_subnet).*.id,
-#       values(module.eks_network.k8s_private_subnet).*.id
-#     ) 
+  k8s_subnet_ids =  concat(
+    module.eks_network.eks_public_subnets,
+    module.eks_network.eks_private_subnets,    
+  )
 
-#   cluster_name = var.cluster_name
-# }
+  cluster_name = var.cluster_name
+}

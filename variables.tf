@@ -1,6 +1,6 @@
 variable "cluster_name" {
-  default = "k8website"
+  default = "PWB_STG"
   type = string
-  description = "AWS EKS CLuster Name"
+  description = "EKS Staging Cluster"
   nullable = false
 }
