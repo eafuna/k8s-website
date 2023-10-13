@@ -16,3 +16,24 @@ module "eks" {
 
   cluster_name = var.cluster_name
 }
+
+
+module "s3_bucket_regional" {
+  source = "./s3"
+  
+  cluster_name = var.cluster_name
+
+  k8s_common_tags = local.k8s_common_tags
+}
+
+module "k8s_tgw_attachment" {
+  source = "./tgw"
+  
+  cluster_name = var.cluster_name
+
+  k8s_common_tags = local.k8s_common_tags
+
+  tgw_id = var.tgw_id
+  k8s_subnet_ids = module.eks_network.eks_private_subnets
+  k8s_vpc_id = module.eks_network.eks_vpc_id
+}

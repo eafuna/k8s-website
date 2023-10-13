@@ -21,6 +21,9 @@ resource "aws_iam_role" "test_oidc" {
   name               = "test-oidc"
 }
 
+# ------------------------------------------------
+# Test policy for s3 service account
+# ------------------------------------------------
 resource "aws_iam_policy" "test-policy" {
   name = "test-policy"
 
