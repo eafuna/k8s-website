@@ -1,21 +1,4 @@
-resource "aws_iam_role" "k8s_website" {
-  name = "${var.cluster_name}-iam-role"
 
-  assume_role_policy = <<POLICY
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Principal": {
-        "Service": "eks.amazonaws.com"
-      },
-      "Action": "sts:AssumeRole"
-    }
-  ]
-}
-POLICY
-}
 
 resource "aws_iam_role_policy_attachment" "k8s_website-AmazonEKSClusterPolicy" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
@@ -33,5 +16,7 @@ resource "aws_eks_cluster" "k8s_website" {
     subnet_ids = var.k8s_subnet_ids
   }
 
+  tags = var.k8s_common_tags
+    
   depends_on = [aws_iam_role_policy_attachment.k8s_website-AmazonEKSClusterPolicy]
 }

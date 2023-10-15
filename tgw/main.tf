@@ -7,5 +7,5 @@ resource "aws_ec2_transit_gateway_vpc_attachment" "k8s_tgw_attachment" {
   
   tags = merge(
     var.k8s_common_tags,
-    { Name = "${var.cluster_name}-k8s-tgw-attahments"} )
+    { Name = "${var.base_naming_standard}-${var.resource_name_standard}-${var.environment}"} )
 }

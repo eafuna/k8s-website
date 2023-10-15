@@ -7,9 +7,7 @@ locals {
     "kubernetes.io/cluster/{$var.cluster_name}"   = "owned" # subnet owned exclussively by cluster
   }
 
-  k8s_common_tags = {
-    "owner" = var.cluster_name
-  }
+  k8s_common_tags = var.k8s_common_tags
 
   k8s_has_public_subnet = length(var.k8s_aws_public_subnets) > 0 ? true : false
 

@@ -23,8 +23,9 @@ resource "aws_route_table" "private" {
   ]
 
   tags = merge(
-    local.k8s_common_tags,
-    { Name = "${var.cluster_name}-private-route-table"} )
+    local.k8s_common_tags, {
+      Name = "-${var.base_naming_standard}-PvtRt-${var.environment}"    
+    })
 
 }
 
@@ -50,9 +51,9 @@ resource "aws_route_table" "public" {
   ]
 
   tags = merge(
-    local.k8s_common_tags,
-    { Name = "${var.cluster_name}-public-route-table"} )
-
+    local.k8s_common_tags, {
+      Name = "${var.base_naming_standard}-PubRt-${var.environment}"    
+    })
 }
 
 

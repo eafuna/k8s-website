@@ -4,8 +4,9 @@ resource "aws_eip" "nat" {
   vpc = true
 
   tags = merge(
-    local.k8s_common_tags,
-    { Name = "${var.cluster_name}-nat-eip-${each.key}"} )
+    local.k8s_common_tags, {
+      Name = "${var.base_naming_standard}-NatEip-${var.environment}"    
+    })
 
   depends_on = [aws_internet_gateway.igw]    
 }
@@ -17,8 +18,9 @@ resource "aws_nat_gateway" "nat" {
   subnet_id     = aws_subnet.k8s_public_subnet[each.key].id 
   
   tags = merge(
-    local.k8s_common_tags,
-    { Name = "${var.cluster_name}-nat-gateway"} )
+    local.k8s_common_tags, {
+      Name = "${var.base_naming_standard}-NatGw-${var.environment}"    
+    })
 
   depends_on = [aws_internet_gateway.igw]
 }

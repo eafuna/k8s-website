@@ -8,6 +8,11 @@ output "eks_public_subnets" {
   value = values(aws_subnet.k8s_public_subnet).*.id
 }
 
+output "eks_db_subnets" {
+  description = "aws public subnet publiccollections"
+  value = values(aws_subnet.k8s_db_subnet).*.id
+}
+
 output "eks_vpc_id" {
   value = aws_vpc.k8s_new_vpc.id
 }

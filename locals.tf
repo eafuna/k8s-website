@@ -1,7 +1,8 @@
 locals {
 
   k8s_common_tags = {
-    "owner" = var.cluster_name
+    "CreatedBy" = "AspireNxt"
+    "Terraform-IaC" = "True"
   }
 
 }

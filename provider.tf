@@ -10,6 +10,9 @@ terraform {
     }
   }
 
+  # ON DEVOPS ACCOUNT
+  # ytl-devops-aws-pwb-eks-terraform
+  # ytl-devops-aws-pwb-eks-tf-lockid
   backend "s3" {
     bucket            = "terraform-s3-eks-state"
     key              	= "state/terraform.tfstate"
